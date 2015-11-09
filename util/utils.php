@@ -1,28 +1,28 @@
 <?php
 
-class Utils{
-    
-    public static function createLink($page, array $params = array()){
+class Utils {
+
+    public static function createLink($page, array $params = array()) {
         $mergedParams = array_merge(array('page' => $page), $params);
-        return 'index.php?'.http_build_query($mergedParams);
+        return 'index.php?' . http_build_query($mergedParams);
     }
-    
-    public static function redirect($page, array $params = array()){
-        header('Location: '.self::createLink($page,$params));
+
+    public static function redirect($page, array $params = array()) {
+        header('Location: ' . self::createLink($page, $params));
         die();
     }
-    
-    public static function escape($string){
-        return htmlspecialchars($string, ENT_QUOTES.ENT_QUOTES);
+
+    public static function escape($string) {
+        return htmlspecialchars($string, ENT_QUOTES . ENT_QUOTES);
     }
-    
-    public static function getUrlParam($name){
-        if(!array_key_exists($name, $_GET)){
-            throw new NotFoundException('URL parameter '.$name.' not found.');
+
+    public static function getUrlParam($name) {
+        if (!array_key_exists($name, $_GET)) {
+            throw new NotFoundException('URL parameter ' . $name . ' not found.');
         }
         return $_GET[$name];
     }
-    
+
     /**
      * Get {@link FlightBooking} by the identifier 'id' found in the URL.
      * @return FlightBooking {@link FlightBooking} instance
@@ -45,4 +45,14 @@ class Utils{
         }
         return $flightBooking;
     }
+
+    /**
+     * Capitalize the first letter of the given string
+     * @param string $string string to be capitalized
+     * @return string capitalized string
+     */
+    public static function capitalize($string) {
+        return ucfirst(mb_strtolower($string));
+    }
+
 }

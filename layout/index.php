@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <ul>
+            <li><a href="index.php?page=list&status=pending">Admin</a></li>
+        </ul>
         <?php require $template ?>
     </body>
 </html>

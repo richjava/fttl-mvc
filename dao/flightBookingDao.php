@@ -76,7 +76,23 @@ class FlightBookingDao {
         FlightBookingMapper::map($flightBooking, $row);
         return $flightBooking;
     }
-    
+
+    /**
+     * Find all {@link FlightBooking}s by search criteria.
+     * @return array array of {@link FlightBooking}s
+     */
+    public function find($status = null) {
+        $result = array();
+        $sql = 'SELECT id, first_name, no_of_passengers FROM flight_bookings WHERE '
+                . 'status = "'.$status.'";';
+        foreach ($this->query($sql) as $row) {
+            $flightBooking = new FlightBooking();
+            FlightBookingMapper::map($flightBooking, $row);
+            $result[$flightBooking->getId()] = $flightBooking;
+        }
+        return $result;
+    }
+
     /**
      * @return PDOStatement
      */

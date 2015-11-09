@@ -60,6 +60,11 @@ final class Index{
             $run = true;
             //required in layout/index.php
             $template = $this->getTemplate($page);
+            //init flashes
+            $flashes = null;
+            if (Flash::hasFlashes()) {
+                $flashes = Flash::getFlashes();
+            }
             require self::LAYOUT_DIR.'index.php';
         }
         if(!$run){

@@ -8,8 +8,8 @@ class FlightBookingValidator{
     
     public static function validate(FlightBooking $flightBooking){
         $errors = array();
-        if(!trim($flightBooking->getTitle())){
-            $errors[] = new Error('title', 'Title cannot be empty.');
+        if(!trim($flightBooking->getFirstName())){
+            $errors[] = new Error('first_name', 'First name cannot be empty.');
         }
         return $errors;
     }

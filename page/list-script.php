@@ -1,14 +1,10 @@
 <?php
-
-//FIXME
-//$status = Utils::getUrlParam('status');
+$status = Utils::getUrlParam('status');
 //TodoValidator::validateStatus($status);
 //
-//$dao = new FlightBookingDao();
-//$search = new TodoSearchCriteria();
-//$search->setStatus($status);
-//
-//// data for template
-//$title = Utils::capitalize($status) . ' TODOs';
-//$todos = $dao->find($search);
+$dao = new FlightBookingDao();
+
+// data for template
+$title = ucfirst($status) . ' bookings';
+$flightBookings = $dao->find($status);
 

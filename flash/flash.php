@@ -22,12 +22,12 @@ class Flash {
     }
     
     public static function hasFlashes(){
-        self::$init();
+        self::init();
         return count(self::$flashes > 0);
     }
 
     public static function getFlashes(){
-        self::$init();
+        self::init();
         $copy = self::$flashes;
         self::$flashes = array();
         return $copy;
@@ -37,7 +37,7 @@ class Flash {
         if(!strlen(trim($message))){
             throw new Exception('Cannot insert empty flash message!');
         }
-        self::$init();
+        self::init();
         self::$flashes[]=$message;
     }
 }
