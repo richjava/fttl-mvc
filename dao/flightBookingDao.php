@@ -34,8 +34,8 @@ class FlightBookingDao {
         //$flightBooking->setLastModifiedOn($now);
         $flightBooking->setStatus(FlightBooking::PENDING);
         $sql = '
-            INSERT INTO flight_bookings (id, first_name, no_of_passengers, status)
-                VALUES (:id, :first_name, :no_of_passengers, :status)';
+            INSERT INTO flight_bookings (id, first_name, no_of_passengers, status, date)
+                VALUES (:id, :first_name, :no_of_passengers, :status, :date)';
         return $this->execute($sql, $flightBooking);
     }
 
@@ -49,7 +49,8 @@ class FlightBookingDao {
             UPDATE flight_bookings SET
                 first_name = :first_name,
                 no_of_passengers = :no_of_passengers,
-                status = :status
+                status = :status,
+                date = :date
             WHERE
                 id = :id';
         return $this->execute($sql, $flightBooking);
@@ -83,7 +84,7 @@ class FlightBookingDao {
      */
     public function find($status = null) {
         $result = array();
-        $sql = 'SELECT id, first_name, no_of_passengers FROM flight_bookings WHERE '
+        $sql = 'SELECT id, first_name, no_of_passengers, date FROM flight_bookings WHERE '
                 . 'status = "'.$status.'";';
         foreach ($this->query($sql) as $row) {
             $flightBooking = new FlightBooking();
@@ -125,7 +126,8 @@ class FlightBookingDao {
             ':id' => $flightBooking->getId(),
             ':first_name' => $flightBooking->getFirstName(),
             ':no_of_passengers' => $flightBooking->getNoOfPassengers(),
-            ':status' => $flightBooking->getStatus()
+            ':status' => $flightBooking->getStatus(),
+            ':date' => self::formatDateTime($flightBooking->getDate())
         );
 //        if ($flightBooking->getId()) {
 //            // unset created date, this one is never updated
@@ -145,4 +147,7 @@ class FlightBookingDao {
         throw new Exception('DB error [' . $errorInfo[0] . ', ' . $errorInfo[1] . ']: ' . $errorInfo[2]);
     }
 
+    private static function formatDateTime(DateTime $date) {
+        return $date->format(DateTime::ISO8601);
+    }
 }

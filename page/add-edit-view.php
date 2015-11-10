@@ -17,6 +17,11 @@
             echo Utils::escape($flightBooking->getFirstName()); ?>"/>
         </div>
         <div class="field">
+            <label>Date:</label>
+            <input type="date" name="flight_booking[date]" value="<?php 
+            echo Utils::escape($flightBooking->getDate()->format('Y-m-d'));?>"/>
+        </div>
+        <div class="field">
             <label>No of passengers:</label>
             <select name="flight_booking[no_of_passengers]">
             <?php for ($i = 1; $i < 6; ++$i): ?>

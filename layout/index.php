@@ -7,6 +7,7 @@
     </head>
     <body>
         <ul>
+            <li><a href="index.php">Home</a></li>
             <li><a href="index.php?page=list&status=pending">Admin</a></li>
         </ul>
         <?php require $template ?>

@@ -8,6 +8,7 @@ if ($edit) {
 } else {
     // set defaults
     $flightBooking = new FlightBooking();
+    $flightBooking->setDate(new DateTime());
     //$flightBooking->setPriority(Todo::PRIORITY_MEDIUM);
     //$dueOn = new DateTime("+1 day");
     //$dueOn->setTime(0, 0, 0);
@@ -16,14 +17,15 @@ if ($edit) {
 
 if (array_key_exists('cancel', $_POST)) {
     // redirect
-    //Utils::redirect('detail', array('id' => $flightBooking->getId()));
+    Utils::redirect('home');
 } elseif (array_key_exists('save', $_POST)) {
     // for security reasons, do not map the whole $_POST['todo']
     //pretending to have values in $_POST
     //$data = array('first_name' => 'Bob', 'no_of_passengers' => 2);
     $data = array(
         'first_name' => $_POST['flight_booking']['first_name'],
-        'no_of_passengers' => $_POST['flight_booking']['no_of_passengers']
+        'no_of_passengers' => $_POST['flight_booking']['no_of_passengers'],
+        'date' => $_POST['flight_booking']['date'].' 00:00:00'
     );
     // map
     FlightBookingMapper::map($flightBooking, $data);

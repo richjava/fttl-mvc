@@ -8,7 +8,7 @@ final class Index{
    
     public function init(){
         session_start();
-        set_exception_handler(array($this,'handleException'));
+        //set_exception_handler(array($this,'handleException'));
         spl_autoload_register(array($this, 'loadClass'));
     }
     
@@ -34,7 +34,7 @@ final class Index{
         require_once $classes[$name];
     }
     
-    private function handleException(Exception $ex){
+    public function handleException(Exception $ex){
         $extra = array('message' => $ex->getMessage());
         if($ex instanceof NotFoundException){
             header('HTTP/1.0 404 Not Found');

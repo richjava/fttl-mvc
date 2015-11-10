@@ -10,6 +10,7 @@ class FlightBooking {
     private $id;
     private $firstName;
     private $noOfPassengers;
+    private $date;
     private $status = self::PENDING;
 
     const PENDING = 'pending';
@@ -55,5 +56,11 @@ class FlightBooking {
             self::VOIDED
         );
     }
+    function getDate() {
+        return $this->date;
+    }
 
+    function setDate($date) {
+        $this->date = $date;
+    }
 }

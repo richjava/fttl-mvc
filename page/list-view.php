@@ -9,6 +9,7 @@
             <tr>
                 <th>First name</th>
                 <th>No of passengers</th>
+                <th>Date</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                 <tr>
                     <td><?php echo $flightBooking->getFirstName(); ?></td>
                     <td><?php echo $flightBooking->getNoOfPassengers(); ?></td>
+                    <td><?php echo Utils::escape(Utils::formatDateTime($flightBooking->getDate())); ?></td>
                     <td><a href="index.php?page=add-edit&id=<?php 
                     echo $flightBooking->getId(); ?>">Edit</a> | 
                         <a href="index.php?page=change-status&id=<?php 

@@ -55,4 +55,16 @@ class Utils {
         return ucfirst(mb_strtolower($string));
     }
 
+    /**
+     * Format date and time.
+     * @param DateTime $date date to be formatted
+     * @return string formatted date and time
+     */
+    public static function formatDateTime(DateTime $date = null) {
+        if ($date === null) {
+            return '';
+        }
+        return $date->format('m/d/Y H:i');
+    }
+
 }
